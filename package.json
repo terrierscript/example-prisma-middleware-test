@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@prisma/client": "4.1.1",
     "framer-motion": "^6",
     "next": "^12.2.3",
     "prisma": "^4.1.1",
