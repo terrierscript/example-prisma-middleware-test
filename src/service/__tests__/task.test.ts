@@ -12,9 +12,20 @@ import { getTaskById } from "../task"
 const mockedPrismaClient = () => {
   const prismaClient = new PrismaClient()
   prismaClient.$use(async (params, next) => {
+    console.log(params)
+    return {
+      id: "a",
+      name: "hoge"
+    } as Task
+  })
+  return prismaClient
+}
+const mockedPrismaClient2 = () => {
+  const prismaClient = new PrismaClient()
+  prismaClient.$use(async (params, next) => {
     if (params.model === "Task") {
       return {
-        id: "a",
+        id: "foo",
         name: "hoge"
       } as Task
     }
@@ -24,7 +35,10 @@ const mockedPrismaClient = () => {
 }
 
 test("Task test", async () => {
-  const prismaClient = mockedPrismaClient()
-  const task = await getTaskById(prismaClient, "a")
-  expect(task?.id).toBe("a")
+
+  test("Task test", async () => {
+    const prismaClient = mockedPrismaClient()
+    const task = await getTaskById(prismaClient, "foo")
+    expect(task?.name).toBe("hoge")
+  })
 })
